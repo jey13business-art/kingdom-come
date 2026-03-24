@@ -815,9 +815,11 @@ function closeModal(id){ document.getElementById(id).classList.remove('open'); }
 function openPassModal(){ openModal('passModal'); }
 
 function purchasePass(type){
-  // In production: open Stripe checkout here
-  // Stripe payment link or embedded checkout
-  alert('Stripe checkout would open here.\n\nIntegrate your Stripe payment link for:\n'+(type==='lifetime'?'$2.99 one-time':'$0.99/month subscription'));
+  const links = {
+    lifetime: 'https://buy.stripe.com/aFa8wPfSW14ZcNmakVefC02',
+    monthly:  'https://buy.stripe.com/cNi00jbCG4hb14E78JefC01',
+  };
+  window.open(links[type], '_blank');
 }
 
 let offlineAmount = 0;

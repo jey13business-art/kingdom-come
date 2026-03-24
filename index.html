@@ -34,14 +34,14 @@ body{background:var(--night);color:var(--parchment);font-family:'Crimson Pro',se
 .header{text-align:center;padding:14px 16px 8px;border-bottom:1px solid rgba(201,168,76,0.2);position:relative;}
 .header::before,.header::after{content:'✦';position:absolute;top:16px;font-size:12px;color:var(--gold-dim);}
 .header::before{left:16px}.header::after{right:16px}
-.game-title{font-family:'Cinzel',serif;font-size:clamp(20px,5vw,30px);font-weight:700;color:var(--gold-light);letter-spacing:0.12em;text-shadow:0 0 40px rgba(201,168,76,0.4);}
-.game-subtitle{font-family:'IM Fell English',serif;font-style:italic;color:var(--mist);font-size:13px;margin-top:2px;}
+.game-title{font-family:'Cinzel',serif;font-size:clamp(24px,6vw,36px);font-weight:700;color:var(--gold-light);letter-spacing:0.12em;text-shadow:0 0 40px rgba(201,168,76,0.4);}
+.game-subtitle{font-family:'IM Fell English',serif;font-style:italic;color:var(--mist);font-size:15px;margin-top:2px;}
 
 .prestige-bar{display:flex;align-items:center;justify-content:center;gap:10px;padding:5px 16px;background:rgba(122,31,31,0.08);border-bottom:1px solid rgba(122,31,31,0.2);font-family:'Cinzel',serif;font-size:11px;color:#E8A0A0;letter-spacing:0.08em;}
 .prestige-count{background:rgba(122,31,31,0.4);border:1px solid rgba(122,31,31,0.6);border-radius:4px;padding:2px 8px;}
 
 .verse-banner{background:rgba(201,168,76,0.04);border-bottom:1px solid rgba(201,168,76,0.08);padding:7px 20px;text-align:center;}
-.verse-text{font-family:'IM Fell English',serif;font-style:italic;font-size:12px;color:var(--gold-dim);line-height:1.5;}
+.verse-text{font-family:'IM Fell English',serif;font-style:italic;font-size:14px;color:var(--gold-dim);line-height:1.5;}
 
 /* ── KINGDOM SCENE ── */
 #kingdom-scene{width:100%;height:160px;position:relative;overflow:hidden;background:linear-gradient(to bottom,#0a0805 0%,#12100a 60%,#1a1510 100%);border-bottom:1px solid rgba(201,168,76,0.12);}
@@ -61,10 +61,10 @@ body{background:var(--night);color:var(--parchment);font-family:'Crimson Pro',se
 
 /* ── COUNTER ── */
 .counter-section{text-align:center;padding:14px 16px 8px;position:relative;z-index:1;}
-.blessings-amount{font-family:'Cinzel',serif;font-size:clamp(26px,7vw,46px);color:var(--gold-light);font-weight:600;text-shadow:0 0 30px rgba(232,201,122,0.3);line-height:1;}
-.blessings-label{font-family:'IM Fell English',serif;font-style:italic;color:var(--mist);font-size:14px;margin-top:2px;}
-.bps-display{color:var(--gold-dim);font-size:12px;margin-top:3px;}
-.lifetime-display{color:var(--mist);font-size:11px;margin-top:1px;}
+.blessings-amount{font-family:'Cinzel',serif;font-size:clamp(32px,9vw,54px);color:var(--gold-light);font-weight:600;text-shadow:0 0 30px rgba(232,201,122,0.3);line-height:1;}
+.blessings-label{font-family:'IM Fell English',serif;font-style:italic;color:var(--mist);font-size:17px;margin-top:2px;}
+.bps-display{color:var(--gold-dim);font-size:15px;margin-top:3px;}
+.lifetime-display{color:var(--mist);font-size:13px;margin-top:1px;}
 
 /* ── TAP BUTTON ── */
 .tap-area{display:flex;justify-content:center;margin:8px 0;position:relative;z-index:1;}
@@ -87,41 +87,45 @@ body{background:var(--night);color:var(--parchment);font-family:'Crimson Pro',se
 
 /* ── TABS ── */
 .tabs{display:flex;border-bottom:1px solid rgba(201,168,76,0.12);background:rgba(0,0,0,0.3);position:relative;z-index:1;}
-.tab-btn{flex:1;padding:9px 2px;font-family:'Cinzel',serif;font-size:9px;letter-spacing:0.1em;color:var(--mist);background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;transition:color 0.2s,border-color 0.2s;text-transform:uppercase;}
+.tab-btn{flex:1;padding:11px 2px;font-family:'Cinzel',serif;font-size:11px;letter-spacing:0.1em;color:var(--mist);background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;transition:color 0.2s,border-color 0.2s;text-transform:uppercase;}
 .tab-btn.active{color:var(--gold-light);border-bottom-color:var(--gold);}
 .tab-panel{display:none;position:relative;z-index:1;}.tab-panel.active{display:block;}
-.section-head{font-family:'Cinzel',serif;font-size:10px;letter-spacing:0.18em;color:var(--gold-dim);text-transform:uppercase;padding:10px 14px 6px;border-bottom:1px solid rgba(201,168,76,0.08);}
+.section-head{font-family:'Cinzel',serif;font-size:12px;letter-spacing:0.18em;color:var(--gold-dim);text-transform:uppercase;padding:12px 14px 7px;border-bottom:1px solid rgba(201,168,76,0.08);}
 
 /* ── BUILDINGS ── */
 .building-card{display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid rgba(201,168,76,0.05);cursor:pointer;transition:background 0.2s,box-shadow 0.3s;position:relative;overflow:hidden;}
 .building-card::before{content:'';position:absolute;inset:0;opacity:0;transition:opacity 0.3s;background:radial-gradient(ellipse at left,rgba(201,168,76,0.08),transparent 70%);}
 .building-card.can-afford::before{opacity:1;}
 .building-card.can-afford{animation:affordGlow 2s ease-in-out infinite;}
-@keyframes affordGlow{0%,100%{box-shadow:inset 0 0 0 1px rgba(201,168,76,0.0)}50%{box-shadow:inset 0 0 0 1px rgba(201,168,76,0.25)}}
-.building-card:hover:not(.locked):not(.premium-locked){background:rgba(201,168,76,0.05)}
-.building-card.locked{opacity:0.3;cursor:default;}
-.building-card.premium-locked{opacity:0.55;cursor:pointer;}
-.building-card.premium-locked:hover{background:rgba(122,31,31,0.08)}
-.building-icon{font-size:24px;width:34px;text-align:center;flex-shrink:0;}
-.building-info{flex:1;min-width:0;}
-.building-name{font-family:'Cinzel',serif;font-size:12px;color:var(--parchment);font-weight:600;}
-.building-stat{font-size:11px;color:var(--mist);margin-top:1px;}
-.building-right{text-align:right;flex-shrink:0;}
-.building-cost{font-family:'Cinzel',serif;font-size:11px;color:var(--gold);}
-.building-count{font-family:'Cinzel',serif;font-size:16px;font-weight:700;color:var(--gold-light);}
-.premium-badge{font-size:9px;background:rgba(122,31,31,0.6);color:#E8A0A0;border:1px solid rgba(122,31,31,0.8);border-radius:3px;padding:1px 4px;font-family:'Cinzel',serif;}
+/* ── BUILDING GRID ── */
+.building-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;padding:12px;}
+.building-card{display:flex;flex-direction:column;align-items:center;text-align:center;padding:14px 10px 12px;border-radius:10px;border:1px solid rgba(201,168,76,0.12);background:rgba(255,255,255,0.02);cursor:pointer;transition:background 0.2s,border-color 0.3s,box-shadow 0.3s;position:relative;overflow:hidden;}
+.building-card::before{content:'';position:absolute;inset:0;opacity:0;transition:opacity 0.3s;background:radial-gradient(ellipse at 50% 100%,rgba(201,168,76,0.1),transparent 70%);}
+.building-card.can-afford{border-color:rgba(201,168,76,0.4);animation:affordGlow 2s ease-in-out infinite;}
+.building-card.can-afford::before{opacity:1;}
+@keyframes affordGlow{0%,100%{box-shadow:0 0 0 0 rgba(201,168,76,0)}50%{box-shadow:0 0 14px 2px rgba(201,168,76,0.18)}}
+.building-card:hover:not(.locked):not(.premium-locked){background:rgba(201,168,76,0.06);border-color:rgba(201,168,76,0.3);}
+.building-card.locked{opacity:0.25;cursor:default;}
+.building-card.premium-locked{opacity:0.55;cursor:pointer;border-color:rgba(122,31,31,0.3);}
+.building-card.premium-locked:hover{background:rgba(122,31,31,0.08);}
+.building-icon{font-size:36px;margin-bottom:7px;line-height:1;}
+.building-name{font-family:'Cinzel',serif;font-size:15px;color:var(--parchment);font-weight:600;margin-bottom:4px;}
+.building-stat{font-size:13px;color:var(--mist);line-height:1.4;}
+.building-cost{font-family:'Cinzel',serif;font-size:14px;color:var(--gold);margin-top:10px;font-weight:600;}
+.building-count{position:absolute;top:8px;right:10px;font-family:'Cinzel',serif;font-size:20px;font-weight:700;color:var(--gold-light);}
+.premium-badge{font-size:11px;background:rgba(122,31,31,0.6);color:#E8A0A0;border:1px solid rgba(122,31,31,0.8);border-radius:3px;padding:2px 5px;font-family:'Cinzel',serif;margin-top:4px;display:inline-block;}
 
-/* ── UPGRADES ── */
-.upgrade-card{display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid rgba(201,168,76,0.05);cursor:pointer;transition:background 0.15s;}
-.upgrade-card:hover:not(.bought){background:rgba(201,168,76,0.04)}
-.upgrade-card.bought{opacity:0.4;cursor:default;}
-.upgrade-card.can-afford-up{background:rgba(74,122,74,0.07)!important}
-.upgrade-icon{font-size:20px;width:30px;text-align:center;flex-shrink:0;}
-.upgrade-info{flex:1;}
-.upgrade-name{font-family:'Cinzel',serif;font-size:12px;color:var(--parchment);}
-.upgrade-desc{font-size:11px;color:var(--mist);margin-top:1px;}
-.upgrade-cost{font-family:'Cinzel',serif;font-size:11px;color:var(--gold);flex-shrink:0;}
-.upgrade-done{font-size:14px;color:var(--grace);flex-shrink:0;}
+/* ── UPGRADE GRID ── */
+.upgrade-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;padding:12px;}
+.upgrade-card{display:flex;flex-direction:column;align-items:center;text-align:center;padding:14px 10px 12px;border-radius:10px;border:1px solid rgba(201,168,76,0.1);background:rgba(255,255,255,0.02);cursor:pointer;transition:background 0.2s,border-color 0.2s;position:relative;}
+.upgrade-card:hover:not(.bought){background:rgba(201,168,76,0.05);border-color:rgba(201,168,76,0.25);}
+.upgrade-card.bought{opacity:0.35;cursor:default;border-color:rgba(74,122,74,0.2);}
+.upgrade-card.can-afford-up{border-color:rgba(74,122,74,0.5);background:rgba(74,122,74,0.06)!important;}
+.upgrade-icon{font-size:30px;margin-bottom:7px;line-height:1;}
+.upgrade-name{font-family:'Cinzel',serif;font-size:14px;color:var(--parchment);font-weight:600;margin-bottom:4px;}
+.upgrade-desc{font-size:13px;color:var(--mist);line-height:1.4;}
+.upgrade-cost{font-family:'Cinzel',serif;font-size:14px;color:var(--gold);margin-top:10px;font-weight:600;}
+.upgrade-done{position:absolute;top:8px;right:10px;font-size:18px;color:var(--grace);}
 
 /* ── PRESTIGE ── */
 .prestige-panel{padding:18px 14px;}
@@ -703,29 +707,30 @@ function renderRewardBtn(){
 
 function renderBuildings(){
   const el=document.getElementById('buildingsList');el.innerHTML='';
+  const grid=document.createElement('div');grid.className='building-grid';
   BUILDINGS.forEach(b=>{
     const count=state.buildings[b.id]||0,cost=getBuildingCost(b);
     const isLocked=b.premium&&!state.hasPremium,canAfford=!isLocked&&state.blessings>=cost;
     const mult=count>0?getUpgradeMultiplier(b.id)*state.prestigeMultiplier:1;
     const div=document.createElement('div');
     div.className='building-card'+(isLocked?' premium-locked':canAfford?' can-afford':'');
-    div.innerHTML=`<div class="building-icon">${b.icon}</div>
-      <div class="building-info">
-        <div class="building-name">${b.name}${isLocked?' <span class="premium-badge">PASS</span>':''}</div>
-        <div class="building-stat">${b.desc}</div>
-        <div class="building-stat" style="color:var(--gold-dim)">${formatNum(b.bps*mult)} blessings/sec each</div>
-      </div>
-      <div class="building-right">
-        <div class="building-cost">${formatNum(cost)}</div>
-        <div class="building-count">${count||''}</div>
-      </div>`;
-    div.onclick=()=>buyBuilding(b.id);el.appendChild(div);
+    div.innerHTML=`
+      ${count>0?`<div class="building-count">${count}</div>`:''}
+      <div class="building-icon">${b.icon}</div>
+      <div class="building-name">${b.name}</div>
+      <div class="building-stat">${b.desc}</div>
+      <div class="building-stat" style="color:var(--gold-dim);margin-top:3px">${formatNum(b.bps*mult)}/sec each</div>
+      ${isLocked?'<span class="premium-badge">PASS</span>':`<div class="building-cost">${formatNum(cost)}</div>`}`;
+    div.onclick=()=>buyBuilding(b.id);grid.appendChild(div);
   });
+  el.appendChild(grid);
 }
 
 function renderUpgrades(){
   const el=document.getElementById('upgradesList');el.innerHTML='';
   let any=false;
+  const grid=document.createElement('div');grid.className='upgrade-grid';
+  const ICONS={campfire:'🔥',chapel:'⛪',garden:'🌿',mission:'📜',monastery:'🕯️',scriptorium:'📖',belltower:'🔔',seminary:'🎓',cathedral:'🏰',tap:'🙏',global:'✨'};
   UPGRADES.forEach(u=>{
     const bought=state.boughtUpgrades.includes(u.id);
     const rb=BUILDINGS.find(b=>b.id===u.building);
@@ -734,13 +739,20 @@ function renderUpgrades(){
     const canAfford=!bought&&state.blessings>=u.cost;
     const div=document.createElement('div');
     div.className='upgrade-card'+(bought?' bought':canAfford?' can-afford-up':'');
-    div.innerHTML=`<div class="upgrade-icon">${bought?'✦':'◈'}</div>
-      <div class="upgrade-info"><div class="upgrade-name">${u.name}</div><div class="upgrade-desc">${u.desc}</div></div>
-      ${bought?'<div class="upgrade-done">✓</div>':`<div class="upgrade-cost">${formatNum(u.cost)}</div>`}`;
+    div.innerHTML=`
+      ${bought?'<div class="upgrade-done">✓</div>':''}
+      <div class="upgrade-icon">${ICONS[u.building]||'◈'}</div>
+      <div class="upgrade-name">${u.name}</div>
+      <div class="upgrade-desc">${u.desc}</div>
+      ${bought?'':`<div class="upgrade-cost">${formatNum(u.cost)}</div>`}`;
     if(!bought)div.onclick=()=>buyUpgrade(u.id);
-    el.appendChild(div);
+    grid.appendChild(div);
   });
-  if(!any)el.innerHTML='<div style="padding:20px;text-align:center;color:var(--mist);font-family:\'IM Fell English\',serif;font-style:italic;font-size:14px">Build structures to unlock their upgrades.</div>';
+  if(!any){
+    el.innerHTML='<div style="padding:24px;text-align:center;color:var(--mist);font-family:\'IM Fell English\',serif;font-style:italic;font-size:16px">Build structures to unlock their upgrades.</div>';
+  } else {
+    el.appendChild(grid);
+  }
 }
 
 function renderMilestones(){
@@ -750,11 +762,11 @@ function renderMilestones(){
     let cur=m.key==='bps'?getBPS():(state[m.key]||0);
     const pct=Math.min(100,(cur/m.goal)*100);
     const div=document.createElement('div');
-    div.style.cssText='display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid rgba(201,168,76,0.05)';
-    div.innerHTML=`<div style="font-size:16px;width:26px;text-align:center;flex-shrink:0">${done?'✦':'○'}</div>
+    div.style.cssText='display:flex;align-items:center;gap:10px;padding:12px 14px;border-bottom:1px solid rgba(201,168,76,0.05)';
+    div.innerHTML=`<div style="font-size:20px;width:28px;text-align:center;flex-shrink:0">${done?'✦':'○'}</div>
       <div style="flex:1">
-        <div style="font-family:Cinzel,serif;font-size:12px;color:${done?'var(--gold-dim)':'var(--parchment)'}">${m.name}</div>
-        <div style="font-size:11px;color:var(--mist)">${m.desc}</div>
+        <div style="font-family:Cinzel,serif;font-size:14px;color:${done?'var(--gold-dim)':'var(--parchment)'}">${m.name}</div>
+        <div style="font-size:13px;color:var(--mist);margin-top:2px">${m.desc}</div>
         ${!done?`<div style="width:100%;height:3px;background:rgba(201,168,76,0.1);border-radius:2px;margin-top:5px;overflow:hidden"><div style="height:100%;width:${pct}%;background:var(--gold-dim);border-radius:2px;transition:width 0.5s"></div></div>`:''}
       </div>
       ${done?'<div style="font-size:12px;color:var(--grace);font-family:Cinzel,serif">✓</div>':''}`;

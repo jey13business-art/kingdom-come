@@ -7,502 +7,150 @@
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=IM+Fell+English:ital@0;1&family=Crimson+Pro:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-
 :root{
-  --gold:#C9A84C;
-  --gold-light:#E8C97A;
-  --gold-dim:#7A6230;
-  --parchment:#F5EDD8;
-  --ink:#1A1209;
-  --night:#0D0A05;
-  --midnight:#12100A;
-  --stone:#2A2318;
-  --stone-light:#3D3526;
-  --crimson:#7A1F1F;
-  --mist:#8C7A5C;
-  --grace:#4A7A4A;
+  --gold:#C9A84C;--gold-light:#E8C97A;--gold-dim:#7A6230;
+  --parchment:#F5EDD8;--ink:#1A1209;--night:#0D0A05;
+  --stone:#2A2318;--stone-light:#3D3526;--crimson:#7A1F1F;
+  --mist:#8C7A5C;--grace:#4A7A4A;
 }
+body{background:var(--night);color:var(--parchment);font-family:'Crimson Pro',serif;min-height:100vh;overflow-x:hidden;
+  background-image:radial-gradient(ellipse at 20% 20%,rgba(201,168,76,0.04) 0%,transparent 60%),radial-gradient(ellipse at 80% 80%,rgba(122,31,31,0.06) 0%,transparent 60%);}
 
-body{
-  background:var(--night);
-  color:var(--parchment);
-  font-family:'Crimson Pro',serif;
-  min-height:100vh;
-  overflow-x:hidden;
-  background-image:
-    radial-gradient(ellipse at 20% 20%, rgba(201,168,76,0.04) 0%, transparent 60%),
-    radial-gradient(ellipse at 80% 80%, rgba(122,31,31,0.06) 0%, transparent 60%);
-}
+.header{text-align:center;padding:16px 16px 10px;border-bottom:1px solid rgba(201,168,76,0.2);position:relative;}
+.header::before,.header::after{content:'✦';position:absolute;top:18px;font-size:12px;color:var(--gold-dim);}
+.header::before{left:16px}.header::after{right:16px}
+.game-title{font-family:'Cinzel',serif;font-size:clamp(20px,5vw,30px);font-weight:700;color:var(--gold-light);letter-spacing:0.12em;text-shadow:0 0 40px rgba(201,168,76,0.3);}
+.game-subtitle{font-family:'IM Fell English',serif;font-style:italic;color:var(--mist);font-size:13px;margin-top:2px;}
 
-/* ── HEADER ── */
-.header{
-  text-align:center;
-  padding:20px 16px 12px;
-  border-bottom:1px solid rgba(201,168,76,0.2);
-  position:relative;
-}
-.header::before,.header::after{
-  content:'✦';
-  position:absolute;
-  top:22px;
-  font-size:12px;
-  color:var(--gold-dim);
-}
-.header::before{left:16px}
-.header::after{right:16px}
+.prestige-bar{display:flex;align-items:center;justify-content:center;gap:10px;padding:6px 16px;background:rgba(122,31,31,0.08);border-bottom:1px solid rgba(122,31,31,0.2);font-family:'Cinzel',serif;font-size:11px;color:#E8A0A0;letter-spacing:0.08em;}
+.prestige-count{background:rgba(122,31,31,0.4);border:1px solid rgba(122,31,31,0.6);border-radius:4px;padding:2px 8px;}
 
-.game-title{
-  font-family:'Cinzel',serif;
-  font-size:clamp(22px,5vw,32px);
-  font-weight:700;
-  color:var(--gold-light);
-  letter-spacing:0.12em;
-  text-shadow:0 0 40px rgba(201,168,76,0.3);
-}
-.game-subtitle{
-  font-family:'IM Fell English',serif;
-  font-style:italic;
-  color:var(--mist);
-  font-size:13px;
-  margin-top:2px;
-  letter-spacing:0.05em;
-}
+.verse-banner{background:rgba(201,168,76,0.05);border-bottom:1px solid rgba(201,168,76,0.1);padding:8px 20px;text-align:center;}
+.verse-text{font-family:'IM Fell English',serif;font-style:italic;font-size:12px;color:var(--gold-dim);line-height:1.5;}
 
-/* ── VERSE BANNER ── */
-.verse-banner{
-  background:rgba(201,168,76,0.06);
-  border-top:1px solid rgba(201,168,76,0.12);
-  border-bottom:1px solid rgba(201,168,76,0.12);
-  padding:10px 20px;
-  text-align:center;
-}
-.verse-text{
-  font-family:'IM Fell English',serif;
-  font-style:italic;
-  font-size:13px;
-  color:var(--gold-dim);
-  line-height:1.5;
-}
+.counter-section{text-align:center;padding:18px 16px 10px;}
+.blessings-amount{font-family:'Cinzel',serif;font-size:clamp(28px,7vw,48px);color:var(--gold-light);font-weight:600;text-shadow:0 0 30px rgba(232,201,122,0.25);line-height:1;}
+.blessings-label{font-family:'IM Fell English',serif;font-style:italic;color:var(--mist);font-size:14px;margin-top:3px;}
+.bps-display{color:var(--gold-dim);font-size:12px;margin-top:4px;}
+.lifetime-display{color:var(--mist);font-size:11px;margin-top:2px;font-family:'Crimson Pro',serif;}
 
-/* ── BLESSINGS COUNTER ── */
-.counter-section{
-  text-align:center;
-  padding:24px 16px 16px;
-}
-.blessings-amount{
-  font-family:'Cinzel',serif;
-  font-size:clamp(32px,8vw,52px);
-  color:var(--gold-light);
-  font-weight:600;
-  text-shadow:0 0 30px rgba(232,201,122,0.25);
-  line-height:1;
-}
-.blessings-label{
-  font-family:'IM Fell English',serif;
-  font-style:italic;
-  color:var(--mist);
-  font-size:15px;
-  margin-top:4px;
-}
-.bps-display{
-  color:var(--gold-dim);
-  font-size:13px;
-  margin-top:6px;
-  font-family:'Crimson Pro',serif;
-}
+.tap-area{display:flex;justify-content:center;margin:12px 0;}
+.tap-btn{width:96px;height:96px;border-radius:50%;border:2px solid var(--gold-dim);background:radial-gradient(circle at 40% 35%,rgba(201,168,76,0.18),rgba(201,168,76,0.05));cursor:pointer;transition:transform 0.08s,border-color 0.2s;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:3px;outline:none;}
+.tap-btn:active{transform:scale(0.92)}.tap-btn:hover{border-color:var(--gold)}
+.tap-icon{font-size:32px;line-height:1}.tap-hint{font-size:10px;color:var(--gold-dim);font-family:'Cinzel',serif;letter-spacing:0.08em;}
+.float-text{position:fixed;font-family:'Cinzel',serif;font-size:16px;color:var(--gold-light);pointer-events:none;animation:floatUp 0.9s ease-out forwards;z-index:999;}
+@keyframes floatUp{0%{opacity:1;transform:translateY(0) scale(1)}100%{opacity:0;transform:translateY(-60px) scale(0.8)}}
 
-/* ── TAP BUTTON ── */
-.tap-area{
-  display:flex;
-  justify-content:center;
-  margin:16px 0;
-}
-.tap-btn{
-  width:110px;
-  height:110px;
-  border-radius:50%;
-  border:2px solid var(--gold-dim);
-  background:radial-gradient(circle at 40% 35%, rgba(201,168,76,0.18), rgba(201,168,76,0.05));
-  cursor:pointer;
-  position:relative;
-  transition:transform 0.08s, border-color 0.2s;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  flex-direction:column;
-  gap:4px;
-  outline:none;
-}
-.tap-btn:active{transform:scale(0.93)}
-.tap-btn:hover{border-color:var(--gold)}
-.tap-icon{font-size:36px;line-height:1}
-.tap-hint{font-size:11px;color:var(--gold-dim);font-family:'Cinzel',serif;letter-spacing:0.08em}
+/* TABS */
+.tabs{display:flex;border-bottom:1px solid rgba(201,168,76,0.12);background:rgba(0,0,0,0.2);}
+.tab-btn{flex:1;padding:10px 4px;font-family:'Cinzel',serif;font-size:10px;letter-spacing:0.1em;color:var(--mist);background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;transition:color 0.2s,border-color 0.2s;text-transform:uppercase;}
+.tab-btn.active{color:var(--gold-light);border-bottom-color:var(--gold);}
+.tab-panel{display:none;}.tab-panel.active{display:block;}
 
-/* floating +1 */
-.float-text{
-  position:fixed;
-  font-family:'Cinzel',serif;
-  font-size:18px;
-  color:var(--gold-light);
-  pointer-events:none;
-  animation:floatUp 0.9s ease-out forwards;
-  z-index:999;
-}
-@keyframes floatUp{
-  0%{opacity:1;transform:translateY(0) scale(1)}
-  100%{opacity:0;transform:translateY(-60px) scale(0.8)}
-}
+.section-head{font-family:'Cinzel',serif;font-size:10px;letter-spacing:0.18em;color:var(--gold-dim);text-transform:uppercase;padding:12px 16px 6px;border-bottom:1px solid rgba(201,168,76,0.08);}
 
-/* ── LAYOUT SPLIT ── */
-.main-layout{
-  display:grid;
-  grid-template-columns:1fr;
-  gap:0;
-  max-width:900px;
-  margin:0 auto;
-  padding-bottom:70px;
-}
-@media(min-width:640px){
-  .main-layout{grid-template-columns:1fr 1fr}
-}
-
-/* ── SECTION HEADINGS ── */
-.section-head{
-  font-family:'Cinzel',serif;
-  font-size:11px;
-  letter-spacing:0.18em;
-  color:var(--gold-dim);
-  text-transform:uppercase;
-  padding:14px 16px 8px;
-  border-bottom:1px solid rgba(201,168,76,0.1);
-}
-
-/* ── BUILDINGS ── */
-.buildings-panel{
-  border-right:1px solid rgba(201,168,76,0.08);
-}
-.building-card{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  padding:12px 16px;
-  border-bottom:1px solid rgba(201,168,76,0.06);
-  cursor:pointer;
-  transition:background 0.15s;
-  position:relative;
-}
-.building-card:hover:not(.locked){background:rgba(201,168,76,0.04)}
-.building-card.locked{opacity:0.45;cursor:default}
-.building-card.premium-locked{
-  opacity:0.6;
-  cursor:pointer;
-}
+/* BUILDINGS */
+.building-card{display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid rgba(201,168,76,0.05);cursor:pointer;transition:background 0.15s;position:relative;}
+.building-card:hover:not(.locked):not(.premium-locked){background:rgba(201,168,76,0.04)}
+.building-card.locked{opacity:0.35;cursor:default;}
+.building-card.premium-locked{opacity:0.55;cursor:pointer;}
 .building-card.premium-locked:hover{background:rgba(122,31,31,0.08)}
+.building-card.can-afford{background:rgba(201,168,76,0.06)!important}
+.building-icon{font-size:24px;width:34px;text-align:center;flex-shrink:0;}
+.building-info{flex:1;min-width:0;}
+.building-name{font-family:'Cinzel',serif;font-size:12px;color:var(--parchment);font-weight:600;}
+.building-stat{font-size:11px;color:var(--mist);margin-top:1px;}
+.building-right{text-align:right;flex-shrink:0;}
+.building-cost{font-family:'Cinzel',serif;font-size:11px;color:var(--gold);}
+.building-count{font-family:'Cinzel',serif;font-size:16px;font-weight:700;color:var(--gold-light);}
+.premium-badge{font-size:9px;background:rgba(122,31,31,0.6);color:#E8A0A0;border:1px solid rgba(122,31,31,0.8);border-radius:3px;padding:1px 4px;font-family:'Cinzel',serif;}
 
-.building-icon{
-  font-size:26px;
-  width:38px;
-  text-align:center;
-  flex-shrink:0;
-}
-.building-info{flex:1;min-width:0}
-.building-name{
-  font-family:'Cinzel',serif;
-  font-size:13px;
-  color:var(--parchment);
-  font-weight:600;
-}
-.building-desc{
-  font-size:12px;
-  color:var(--mist);
-  margin-top:1px;
-  font-family:'Crimson Pro',serif;
-}
-.building-cost{
-  font-family:'Cinzel',serif;
-  font-size:12px;
-  color:var(--gold);
-  text-align:right;
-  flex-shrink:0;
-}
-.building-count{
-  font-family:'Cinzel',serif;
-  font-size:15px;
-  font-weight:700;
-  color:var(--gold-light);
-  min-width:24px;
-  text-align:center;
-  flex-shrink:0;
-}
-.can-afford{background:rgba(201,168,76,0.07)!important}
-.premium-badge{
-  font-size:10px;
-  background:rgba(122,31,31,0.6);
-  color:#E8A0A0;
-  border:1px solid rgba(122,31,31,0.8);
-  border-radius:3px;
-  padding:1px 5px;
-  font-family:'Cinzel',serif;
-  letter-spacing:0.05em;
-}
+/* UPGRADES */
+.upgrade-card{display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid rgba(201,168,76,0.05);cursor:pointer;transition:background 0.15s;}
+.upgrade-card:hover:not(.bought){background:rgba(201,168,76,0.04)}
+.upgrade-card.bought{opacity:0.4;cursor:default;}
+.upgrade-card.can-afford-up{background:rgba(74,122,74,0.07)!important}
+.upgrade-icon{font-size:20px;width:30px;text-align:center;flex-shrink:0;}
+.upgrade-info{flex:1;}
+.upgrade-name{font-family:'Cinzel',serif;font-size:12px;color:var(--parchment);}
+.upgrade-desc{font-size:11px;color:var(--mist);margin-top:1px;}
+.upgrade-cost{font-family:'Cinzel',serif;font-size:11px;color:var(--gold);flex-shrink:0;}
+.upgrade-done{font-size:14px;color:var(--grace);flex-shrink:0;}
 
-/* ── UPGRADES / MILESTONES ── */
-.right-panel{padding:0}
-.milestone-item{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  padding:10px 16px;
-  border-bottom:1px solid rgba(201,168,76,0.06);
-}
-.milestone-icon{font-size:18px;width:28px;text-align:center;flex-shrink:0}
-.milestone-info{flex:1}
-.milestone-name{font-family:'Cinzel',serif;font-size:12px;color:var(--parchment)}
-.milestone-desc{font-size:11px;color:var(--mist)}
-.milestone-done{
-  font-size:11px;
-  color:var(--grace);
-  font-family:'Cinzel',serif;
-}
-.milestone-progress{
-  width:100%;
-  height:3px;
-  background:rgba(201,168,76,0.1);
-  border-radius:2px;
-  margin-top:5px;
-  overflow:hidden;
-}
-.milestone-fill{
-  height:100%;
-  background:var(--gold-dim);
-  border-radius:2px;
-  transition:width 0.5s;
-}
+/* PRESTIGE */
+.prestige-panel{padding:20px 16px;}
+.prestige-box{border:1px solid rgba(122,31,31,0.5);border-radius:10px;background:rgba(122,31,31,0.06);padding:20px;text-align:center;}
+.prestige-title{font-family:'Cinzel',serif;font-size:16px;color:#E8A0A0;font-weight:700;margin-bottom:8px;}
+.prestige-desc{font-size:13px;color:var(--mist);line-height:1.6;margin-bottom:16px;}
+.prestige-bonus{font-family:'Cinzel',serif;font-size:20px;color:var(--gold-light);margin:10px 0;}
+.prestige-req{font-size:12px;color:var(--mist);margin-bottom:16px;}
+.prestige-btn{width:100%;padding:14px;border-radius:8px;font-family:'Cinzel',serif;font-size:13px;letter-spacing:0.08em;cursor:pointer;border:1px solid rgba(122,31,31,0.7);background:rgba(122,31,31,0.3);color:#E8A0A0;transition:background 0.2s;}
+.prestige-btn:hover:not(:disabled){background:rgba(122,31,31,0.5)}
+.prestige-btn:disabled{opacity:0.4;cursor:default;}
+.prestige-history{margin-top:20px;}
+.prestige-run{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(201,168,76,0.08);font-size:12px;color:var(--mist);}
 
-/* ── REWARD AD BUTTON ── */
-.reward-section{
-  padding:12px 16px;
-  border-bottom:1px solid rgba(201,168,76,0.06);
-}
-.reward-btn{
-  width:100%;
-  padding:10px 16px;
-  background:rgba(74,122,74,0.15);
-  border:1px solid rgba(74,122,74,0.4);
-  border-radius:6px;
-  color:#A8D4A8;
-  font-family:'Cinzel',serif;
-  font-size:12px;
-  letter-spacing:0.06em;
-  cursor:pointer;
-  transition:background 0.2s;
-}
-.reward-btn:hover{background:rgba(74,122,74,0.25)}
-.reward-btn:disabled{opacity:0.4;cursor:default}
-.reward-timer{
-  font-size:11px;
-  color:var(--mist);
-  text-align:center;
-  margin-top:5px;
-  font-family:'Crimson Pro',serif;
-}
+/* REWARD / PASS */
+.reward-section{padding:10px 14px;border-bottom:1px solid rgba(201,168,76,0.06);}
+.reward-btn{width:100%;padding:9px 14px;background:rgba(74,122,74,0.15);border:1px solid rgba(74,122,74,0.4);border-radius:6px;color:#A8D4A8;font-family:'Cinzel',serif;font-size:11px;letter-spacing:0.06em;cursor:pointer;transition:background 0.2s;}
+.reward-btn:hover{background:rgba(74,122,74,0.25)}.reward-btn:disabled{opacity:0.4;cursor:default;}
+.reward-timer{font-size:11px;color:var(--mist);text-align:center;margin-top:4px;}
+.pass-promo{margin:10px 14px;padding:12px;border:1px solid rgba(122,31,31,0.45);border-radius:8px;background:rgba(122,31,31,0.07);cursor:pointer;transition:background 0.2s;}
+.pass-promo:hover{background:rgba(122,31,31,0.13)}
+.pass-title{font-family:'Cinzel',serif;font-size:12px;color:#E8A0A0;font-weight:600;}
+.pass-desc{font-size:11px;color:var(--mist);margin-top:3px;line-height:1.4;}
+.pass-cta{display:inline-block;margin-top:6px;font-family:'Cinzel',serif;font-size:10px;color:#E8A0A0;border:1px solid rgba(122,31,31,0.6);border-radius:3px;padding:3px 10px;letter-spacing:0.08em;}
 
-/* ── KINGDOM PASS PROMO ── */
-.pass-promo{
-  margin:12px 16px;
-  padding:14px;
-  border:1px solid rgba(122,31,31,0.5);
-  border-radius:8px;
-  background:rgba(122,31,31,0.08);
-  cursor:pointer;
-  transition:background 0.2s;
-}
-.pass-promo:hover{background:rgba(122,31,31,0.14)}
-.pass-title{
-  font-family:'Cinzel',serif;
-  font-size:13px;
-  color:#E8A0A0;
-  font-weight:600;
-}
-.pass-desc{
-  font-size:12px;
-  color:var(--mist);
-  margin-top:4px;
-  line-height:1.4;
-}
-.pass-cta{
-  display:inline-block;
-  margin-top:8px;
-  font-family:'Cinzel',serif;
-  font-size:11px;
-  color:#E8A0A0;
-  border:1px solid rgba(122,31,31,0.6);
-  border-radius:4px;
-  padding:4px 12px;
-  letter-spacing:0.08em;
-}
-
-/* ── MODAL ── */
-.modal-overlay{
-  display:none;
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,0.8);
-  z-index:100;
-  align-items:center;
-  justify-content:center;
-  padding:20px;
-}
+/* MODALS */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.82);z-index:100;align-items:center;justify-content:center;padding:20px;}
 .modal-overlay.open{display:flex}
-.modal-box{
-  background:var(--stone);
-  border:1px solid var(--gold-dim);
-  border-radius:12px;
-  max-width:380px;
-  width:100%;
-  padding:28px 24px;
-  position:relative;
-  text-align:center;
-}
-.modal-close{
-  position:absolute;
-  top:12px;right:14px;
-  background:none;border:none;
-  color:var(--mist);font-size:20px;
-  cursor:pointer;line-height:1;
-}
-.modal-title{
-  font-family:'Cinzel',serif;
-  font-size:20px;
-  color:var(--gold-light);
-  font-weight:700;
-  margin-bottom:6px;
-}
-.modal-verse{
-  font-family:'IM Fell English',serif;
-  font-style:italic;
-  color:var(--mist);
-  font-size:13px;
-  margin-bottom:20px;
-  line-height:1.5;
-}
-.modal-options{display:flex;flex-direction:column;gap:10px}
-.modal-btn{
-  width:100%;
-  padding:14px;
-  border-radius:8px;
-  font-family:'Cinzel',serif;
-  font-size:13px;
-  letter-spacing:0.06em;
-  cursor:pointer;
-  border:none;
-  transition:opacity 0.2s;
-}
+.modal-box{background:var(--stone);border:1px solid var(--gold-dim);border-radius:12px;max-width:360px;width:100%;padding:24px 20px;position:relative;text-align:center;}
+.modal-close{position:absolute;top:10px;right:12px;background:none;border:none;color:var(--mist);font-size:18px;cursor:pointer;}
+.modal-title{font-family:'Cinzel',serif;font-size:18px;color:var(--gold-light);font-weight:700;margin-bottom:5px;}
+.modal-verse{font-family:'IM Fell English',serif;font-style:italic;color:var(--mist);font-size:12px;margin-bottom:16px;line-height:1.5;}
+.modal-options{display:flex;flex-direction:column;gap:8px;}
+.modal-btn{width:100%;padding:12px;border-radius:7px;font-family:'Cinzel',serif;font-size:12px;letter-spacing:0.06em;cursor:pointer;border:none;transition:opacity 0.2s;}
 .modal-btn:hover{opacity:0.88}
-.modal-btn.primary{
-  background:var(--gold);
-  color:var(--ink);
-  font-weight:700;
-}
-.modal-btn.secondary{
-  background:rgba(201,168,76,0.12);
-  color:var(--gold-light);
-  border:1px solid var(--gold-dim);
-}
-.modal-btn.dismiss{
-  background:transparent;
-  color:var(--mist);
-  font-size:12px;
-}
-.price-tag{
-  font-size:20px;
-  color:var(--gold-light);
-  font-weight:700;
-}
+.modal-btn.primary{background:var(--gold);color:var(--ink);font-weight:700;}
+.modal-btn.secondary{background:rgba(201,168,76,0.12);color:var(--gold-light);border:1px solid var(--gold-dim);}
+.modal-btn.dismiss{background:transparent;color:var(--mist);font-size:11px;}
+.price-tag{font-size:18px;color:var(--gold-light);font-weight:700;}
+.offline-amount{font-family:'Cinzel',serif;font-size:26px;color:var(--gold-light);font-weight:700;margin:10px 0;}
 
-/* ── MILESTONE TOAST ── */
-.toast{
-  position:fixed;
-  top:70px;
-  left:50%;
-  transform:translateX(-50%) translateY(-20px);
-  background:var(--stone-light);
-  border:1px solid var(--gold-dim);
-  border-radius:8px;
-  padding:10px 20px;
-  font-family:'Cinzel',serif;
-  font-size:13px;
-  color:var(--gold-light);
-  z-index:200;
-  opacity:0;
-  transition:opacity 0.3s, transform 0.3s;
-  white-space:nowrap;
-  pointer-events:none;
-}
+.toast{position:fixed;top:66px;left:50%;transform:translateX(-50%) translateY(-16px);background:var(--stone-light);border:1px solid var(--gold-dim);border-radius:7px;padding:8px 18px;font-family:'Cinzel',serif;font-size:12px;color:var(--gold-light);z-index:200;opacity:0;transition:opacity 0.3s,transform 0.3s;white-space:nowrap;pointer-events:none;}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
-/* ── AD BANNER ── */
-.ad-banner{
-  position:fixed;
-  bottom:0;left:0;right:0;
-  height:55px;
-  background:rgba(13,10,5,0.95);
-  border-top:1px solid rgba(201,168,76,0.15);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:8px;
-  z-index:50;
-}
-.ad-label{
-  font-size:10px;
-  color:var(--stone-light);
-  font-family:'Cinzel',serif;
-  letter-spacing:0.1em;
-  background:rgba(255,255,255,0.04);
-  border:1px solid rgba(255,255,255,0.08);
-  border-radius:3px;
-  padding:2px 5px;
-}
-.ad-placeholder{
-  font-family:'Crimson Pro',serif;
-  font-size:14px;
-  color:var(--mist);
-  font-style:italic;
-}
+.ad-banner{position:fixed;bottom:0;left:0;right:0;height:52px;background:rgba(13,10,5,0.96);border-top:1px solid rgba(201,168,76,0.12);display:flex;align-items:center;justify-content:center;gap:8px;z-index:50;}
+.ad-label{font-size:9px;color:var(--stone-light);font-family:'Cinzel',serif;letter-spacing:0.1em;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:3px;padding:2px 4px;}
+.ad-placeholder{font-family:'Crimson Pro',serif;font-size:13px;color:var(--mist);font-style:italic;}
 .ad-banner.hidden{display:none}
-
-/* ── OFFLINE MODAL ── */
-.offline-amount{
-  font-family:'Cinzel',serif;
-  font-size:28px;
-  color:var(--gold-light);
-  font-weight:700;
-  margin:10px 0;
-}
+.pb{padding-bottom:62px}
 </style>
 </head>
 <body>
 
-<!-- HEADER -->
 <div class="header">
   <div class="game-title">Kingdom Come</div>
   <div class="game-subtitle">Build thy kingdom to the glory of God</div>
 </div>
 
-<!-- DAILY VERSE -->
-<div class="verse-banner">
-  <div class="verse-text" id="verseText">Loading today's scripture...</div>
+<div class="prestige-bar" id="prestigeBar" style="display:none">
+  <span>Prestige</span>
+  <span class="prestige-count" id="prestigeCount">×1</span>
+  <span id="prestigeBonus"></span>
 </div>
 
-<!-- BLESSINGS COUNTER -->
+<div class="verse-banner">
+  <div class="verse-text" id="verseText"></div>
+</div>
+
 <div class="counter-section">
   <div class="blessings-amount" id="blessingsDisplay">0</div>
   <div class="blessings-label">Blessings</div>
   <div class="bps-display" id="bpsDisplay">+0 per second</div>
+  <div class="lifetime-display" id="lifetimeDisplay">Total earned: 0</div>
 </div>
 
-<!-- TAP BUTTON -->
 <div class="tap-area">
   <button class="tap-btn" id="tapBtn" onclick="handleTap(event)">
     <div class="tap-icon">✝</div>
@@ -510,63 +158,89 @@ body{
   </button>
 </div>
 
-<!-- MAIN LAYOUT -->
-<div class="main-layout">
-
-  <!-- LEFT: BUILDINGS -->
-  <div class="buildings-panel">
-    <div class="section-head">Build thy Kingdom</div>
-    <div id="buildingsList"></div>
-  </div>
-
-  <!-- RIGHT: MILESTONES + ACTIONS -->
-  <div class="right-panel">
-    <div class="section-head">Milestones</div>
-    <div id="milestonesList"></div>
-
-    <!-- REWARDED AD -->
-    <div class="reward-section">
-      <button class="reward-btn" id="rewardBtn" onclick="watchRewardAd()">
-        Watch a brief message — receive 2x Blessings for 30 min
-      </button>
-      <div class="reward-timer" id="rewardTimer"></div>
-    </div>
-
-    <!-- KINGDOM PASS PROMO -->
-    <div class="pass-promo" onclick="openPassModal()">
-      <div class="pass-title">⚜ Kingdom Pass</div>
-      <div class="pass-desc">Remove all ads forever and unlock three exclusive kingdom themes: Golden Jerusalem, Winter Vigil, and Autumn Harvest.</div>
-      <div class="pass-cta">View Plans</div>
-    </div>
-  </div>
-
+<div class="tabs">
+  <button class="tab-btn active" onclick="switchTab('buildings')">Buildings</button>
+  <button class="tab-btn" onclick="switchTab('upgrades')">Upgrades</button>
+  <button class="tab-btn" onclick="switchTab('milestones')">Milestones</button>
+  <button class="tab-btn" onclick="switchTab('prestige')">Prestige</button>
+  <button class="tab-btn" onclick="switchTab('store')">Store</button>
 </div>
 
-<!-- AD BANNER -->
+<div class="pb">
+
+<!-- BUILDINGS TAB -->
+<div class="tab-panel active" id="tab-buildings">
+  <div id="buildingsList"></div>
+</div>
+
+<!-- UPGRADES TAB -->
+<div class="tab-panel" id="tab-upgrades">
+  <div class="section-head">Building upgrades</div>
+  <div id="upgradesList"></div>
+</div>
+
+<!-- MILESTONES TAB -->
+<div class="tab-panel" id="tab-milestones">
+  <div class="section-head">Milestones</div>
+  <div id="milestonesList"></div>
+</div>
+
+<!-- PRESTIGE TAB -->
+<div class="tab-panel" id="tab-prestige">
+  <div class="prestige-panel">
+    <div class="prestige-box">
+      <div class="prestige-title">⚜ Prestige Reset</div>
+      <div class="prestige-desc">Reset your kingdom and begin anew — but your faith carries forward. Each prestige multiplies all future Blessing production permanently.</div>
+      <div class="prestige-bonus" id="nextPrestigeBonus">Next bonus: ×1.5 production</div>
+      <div class="prestige-req" id="prestigeReq">Requires: City of Light (final building, 1 owned)</div>
+      <button class="prestige-btn" id="prestigeBtn" onclick="doPrestige()" disabled>
+        Ascend the Kingdom
+      </button>
+    </div>
+    <div class="prestige-history" id="prestigeHistory"></div>
+  </div>
+</div>
+
+<!-- STORE TAB -->
+<div class="tab-panel" id="tab-store">
+  <div class="reward-section">
+    <button class="reward-btn" id="rewardBtn" onclick="watchRewardAd()">
+      Watch a brief message — receive 2× Blessings for 30 min
+    </button>
+    <div class="reward-timer" id="rewardTimer"></div>
+  </div>
+  <div class="pass-promo" onclick="openPassModal()">
+    <div class="pass-title">⚜ Kingdom Pass</div>
+    <div class="pass-desc">Remove all ads forever and unlock three exclusive kingdom themes: Golden Jerusalem, Winter Vigil, and Autumn Harvest.</div>
+    <div class="pass-cta">View Plans</div>
+  </div>
+</div>
+
+</div><!-- /pb -->
+
 <div class="ad-banner" id="adBanner">
   <span class="ad-label">AD</span>
-  <span class="ad-placeholder">[ Google AdSense banner will appear here ]</span>
+  <span class="ad-placeholder">[ Google AdSense banner — replace with your publisher tag ]</span>
 </div>
 
-<!-- MILESTONE TOAST -->
 <div class="toast" id="toast"></div>
 
-<!-- OFFLINE EARNINGS MODAL -->
+<!-- OFFLINE MODAL -->
 <div class="modal-overlay" id="offlineModal">
   <div class="modal-box">
     <button class="modal-close" onclick="closeModal('offlineModal')">✕</button>
     <div class="modal-title">Welcome Back</div>
     <div class="modal-verse">"He who watches over Israel will neither slumber nor sleep." — Psalm 121:4</div>
-    <div style="color:var(--mist);font-size:14px;margin-bottom:6px;">Your kingdom grew while you were away.</div>
+    <div style="color:var(--mist);font-size:13px;margin-bottom:4px">Your kingdom grew while you were away.</div>
     <div class="offline-amount" id="offlineAmount">+0 Blessings</div>
-    <div class="modal-options" style="margin-top:16px">
+    <div class="modal-options" style="margin-top:14px">
       <button class="modal-btn primary" onclick="claimOffline(false)">Claim Blessings</button>
       <button class="modal-btn secondary" onclick="claimOffline(true)">Watch Ad — Claim Double</button>
     </div>
   </div>
 </div>
 
-<!-- KINGDOM PASS MODAL -->
+<!-- PASS MODAL -->
 <div class="modal-overlay" id="passModal">
   <div class="modal-box">
     <button class="modal-close" onclick="closeModal('passModal')">✕</button>
@@ -576,12 +250,12 @@ body{
       <button class="modal-btn primary" onclick="purchasePass('lifetime')">
         <div>Remove Ads Forever</div>
         <div class="price-tag">$2.99</div>
-        <div style="font-size:11px;opacity:0.8;margin-top:2px">One-time · Best value</div>
+        <div style="font-size:10px;opacity:0.8;margin-top:1px">One-time · Best value</div>
       </button>
       <button class="modal-btn secondary" onclick="purchasePass('monthly')">
         <div>Kingdom Pass Monthly</div>
         <div class="price-tag">$0.99 / mo</div>
-        <div style="font-size:11px;opacity:0.7;margin-top:2px">Ads off + all premium themes</div>
+        <div style="font-size:10px;opacity:0.7;margin-top:1px">Ads off + all premium themes</div>
       </button>
       <button class="modal-btn dismiss" onclick="closeModal('passModal')">Maybe later</button>
     </div>
@@ -594,7 +268,7 @@ body{
     <button class="modal-close" onclick="closeModal('premiumModal')">✕</button>
     <div class="modal-title" id="premiumModalTitle">Premium Building</div>
     <div class="modal-verse">"I can do all things through Christ who strengthens me." — Phil 4:13</div>
-    <div style="color:var(--mist);font-size:13px;margin-bottom:16px">This building is part of Kingdom Pass. Unlock it and build your kingdom higher.</div>
+    <div style="color:var(--mist);font-size:12px;margin-bottom:14px">This building is part of Kingdom Pass. Unlock it to build your kingdom higher.</div>
     <div class="modal-options">
       <button class="modal-btn primary" onclick="closeModal('premiumModal');openPassModal()">View Kingdom Pass</button>
       <button class="modal-btn dismiss" onclick="closeModal('premiumModal')">Not now</button>
@@ -602,296 +276,435 @@ body{
   </div>
 </div>
 
+<!-- PRESTIGE CONFIRM MODAL -->
+<div class="modal-overlay" id="prestigeModal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('prestigeModal')">✕</button>
+    <div class="modal-title">Ascend the Kingdom?</div>
+    <div class="modal-verse">"Unless a grain of wheat falls into the earth and dies, it remains alone; but if it dies, it bears much fruit." — John 12:24</div>
+    <div style="color:var(--mist);font-size:12px;margin-bottom:6px">Your buildings and blessings will be lost.</div>
+    <div style="font-family:'Cinzel',serif;font-size:16px;color:var(--gold-light);margin-bottom:16px" id="prestigeConfirmBonus"></div>
+    <div class="modal-options">
+      <button class="modal-btn primary" onclick="confirmPrestige()">Ascend</button>
+      <button class="modal-btn dismiss" onclick="closeModal('prestigeModal')">Not yet</button>
+    </div>
+  </div>
+</div>
+
 <script>
-const VERSES = [
+const VERSES=[
   '"Your kingdom come, your will be done, on earth as it is in heaven." — Matthew 6:10',
-  '"Seek first his kingdom and his righteousness, and all these things will be given to you." — Matthew 6:33',
+  '"Seek first his kingdom and his righteousness." — Matthew 6:33',
   '"For where your treasure is, there your heart will be also." — Matthew 6:21',
-  '"Be strong and courageous. Do not be afraid; do not be discouraged." — Joshua 1:9',
+  '"Be strong and courageous. Do not be afraid." — Joshua 1:9',
   '"The Lord is my shepherd; I shall not want." — Psalm 23:1',
-  '"Trust in the Lord with all your heart and lean not on your own understanding." — Proverbs 3:5',
+  '"Trust in the Lord with all your heart." — Proverbs 3:5',
   '"I can do all this through him who gives me strength." — Philippians 4:13',
   '"For I know the plans I have for you," declares the Lord. — Jeremiah 29:11',
-  '"Give thanks to the Lord, for he is good; his love endures forever." — Psalm 107:1',
+  '"Give thanks to the Lord, for he is good." — Psalm 107:1',
   '"The Lord bless you and keep you." — Numbers 6:24',
+  '"Love one another as I have loved you." — John 15:12',
+  '"Be still and know that I am God." — Psalm 46:10',
+  '"The joy of the Lord is your strength." — Nehemiah 8:10',
+  '"Cast all your anxiety on him because he cares for you." — 1 Peter 5:7',
 ];
 
-const BUILDINGS = [
-  {id:'campfire',   name:'Campfire',       icon:'🔥', desc:'A gathering of the faithful', bps:1,    baseCost:10,   premium:false},
-  {id:'chapel',     name:'Chapel',         icon:'⛪', desc:'A place of prayer and worship', bps:8,   baseCost:100,  premium:false},
-  {id:'garden',     name:'Prayer Garden',  icon:'🌿', desc:'Tended by devoted hands', bps:35,       baseCost:500,  premium:false},
-  {id:'mission',    name:'Mission Post',   icon:'📜', desc:'Sending light to the ends of the earth', bps:120, baseCost:2500, premium:false},
-  {id:'scriptorium',name:'Scripture Hall', icon:'📖', desc:'Where the Word is copied and kept', bps:400,  baseCost:8000, premium:true},
-  {id:'belltower',  name:'Bell Tower',     icon:'🔔', desc:'Its call reaches every corner', bps:1500, baseCost:30000,premium:true},
-  {id:'cathedral',  name:'Cathedral',      icon:'🏰', desc:'The crown of your kingdom', bps:6000,   baseCost:100000,premium:true},
+const BUILDINGS=[
+  {id:'campfire',    name:'Campfire',         icon:'🔥', desc:'A gathering of the faithful',           bps:1,       baseCost:15,      premium:false},
+  {id:'chapel',      name:'Chapel',           icon:'⛪', desc:'A place of prayer and worship',         bps:8,       baseCost:200,     premium:false},
+  {id:'garden',      name:'Prayer Garden',    icon:'🌿', desc:'Tended by devoted hands',               bps:35,      baseCost:1500,    premium:false},
+  {id:'mission',     name:'Mission Post',     icon:'📜', desc:'Sending light to the ends of the earth',bps:120,    baseCost:12000,   premium:false},
+  {id:'monastery',   name:'Monastery',        icon:'🕯️', desc:'Monks pray without ceasing',            bps:400,    baseCost:60000,   premium:false},
+  {id:'scriptorium', name:'Scripture Hall',   icon:'📖', desc:'Where the Word is copied and kept',     bps:1400,   baseCost:300000,  premium:true},
+  {id:'belltower',   name:'Bell Tower',       icon:'🔔', desc:'Its call reaches every corner',         bps:5000,   baseCost:1500000, premium:true},
+  {id:'seminary',    name:'Seminary',         icon:'🎓', desc:'Training the next generation of faith', bps:18000,  baseCost:8000000, premium:true},
+  {id:'cathedral',   name:'Cathedral',        icon:'🏰', desc:'The crown jewel of your kingdom',       bps:65000,  baseCost:40000000,premium:true},
+  {id:'cityoflight', name:'City of Light',    icon:'✨', desc:'A city on a hill that cannot be hidden',bps:250000, baseCost:200000000,premium:true},
 ];
 
-const MILESTONES = [
-  {id:'m1', name:'First Light',     desc:'Earn 50 blessings',     goal:50,     key:'totalEarned'},
-  {id:'m2', name:'Humble Beginnings',desc:'Build 3 structures',   goal:3,      key:'totalBuilt'},
-  {id:'m3', name:'Growing Faith',   desc:'Earn 1,000 blessings',  goal:1000,   key:'totalEarned'},
-  {id:'m4', name:'The Faithful',    desc:'Earn 10,000 blessings', goal:10000,  key:'totalEarned'},
-  {id:'m5', name:'Kingdom Rising',  desc:'Build 10 structures',   goal:10,     key:'totalBuilt'},
-  {id:'m6', name:'City on a Hill',  desc:'Earn 100,000 blessings',goal:100000, key:'totalEarned'},
+const UPGRADES=[
+  {id:'u_campfire1',  building:'campfire',    name:'Kindle the Flame',      desc:'Campfire output ×2',       cost:200,      mult:2},
+  {id:'u_campfire2',  building:'campfire',    name:'Eternal Flame',         desc:'Campfire output ×3',       cost:5000,     mult:3},
+  {id:'u_campfire3',  building:'campfire',    name:'Holy Fire',             desc:'Campfire output ×5',       cost:80000,    mult:5},
+  {id:'u_chapel1',    building:'chapel',      name:'Morning Prayers',       desc:'Chapel output ×2',         cost:3000,     mult:2},
+  {id:'u_chapel2',    building:'chapel',      name:'Hymns of Praise',       desc:'Chapel output ×3',         cost:50000,    mult:3},
+  {id:'u_chapel3',    building:'chapel',      name:'Revival Services',      desc:'Chapel output ×5',         cost:800000,   mult:5},
+  {id:'u_garden1',    building:'garden',      name:'Living Waters',         desc:'Garden output ×2',         cost:20000,    mult:2},
+  {id:'u_garden2',    building:'garden',      name:'Garden of Eden',        desc:'Garden output ×3',         cost:400000,   mult:3},
+  {id:'u_mission1',   building:'mission',     name:'Great Commission',      desc:'Mission output ×2',        cost:120000,   mult:2},
+  {id:'u_mission2',   building:'mission',     name:'Pentecost Power',       desc:'Mission output ×3',        cost:2000000,  mult:3},
+  {id:'u_monastery1', building:'monastery',   name:'Rule of Saint Benedict',desc:'Monastery output ×2',      cost:600000,   mult:2},
+  {id:'u_monastery2', building:'monastery',   name:'Contemplative Order',   desc:'Monastery output ×4',      cost:10000000, mult:4},
+  {id:'u_scrip1',     building:'scriptorium', name:'Illuminated Manuscripts',desc:'Scripture Hall ×2',       cost:3000000,  mult:2},
+  {id:'u_scrip2',     building:'scriptorium', name:'The Living Word',       desc:'Scripture Hall ×4',        cost:50000000, mult:4},
+  {id:'u_bell1',      building:'belltower',   name:'Jubilee Bells',         desc:'Bell Tower output ×2',     cost:15000000, mult:2},
+  {id:'u_sem1',       building:'seminary',    name:'Theological Excellence',desc:'Seminary output ×2',       cost:80000000, mult:2},
+  {id:'u_cath1',      building:'cathedral',   name:'Sacred Architecture',   desc:'Cathedral output ×2',      cost:400000000,mult:2},
+  {id:'u_tap1',       building:'tap',         name:'Fervent Prayer',        desc:'Tap value ×5',             cost:1000,     mult:5},
+  {id:'u_tap2',       building:'tap',         name:'Intercessory Power',    desc:'Tap value ×10',            cost:100000,   mult:10},
+  {id:'u_tap3',       building:'tap',         name:'Prayer Warrior',        desc:'Tap value ×25',            cost:5000000,  mult:25},
+  {id:'u_global1',    building:'global',      name:'Kingdom Anointing',     desc:'All buildings ×1.5',       cost:500000,   mult:1.5},
+  {id:'u_global2',    building:'global',      name:'Heavenly Blessing',     desc:'All buildings ×2',         cost:50000000, mult:2},
 ];
 
-let state = {
-  blessings: 0,
-  totalEarned: 0,
-  totalBuilt: 0,
-  buildings: {},
-  hasPremium: false,
-  rewardActive: false,
-  rewardEnd: 0,
-  lastSave: Date.now(),
-  completedMilestones: [],
-  nextMilestoneAd: 0,
+const MILESTONES=[
+  {id:'m1',  name:'First Light',          desc:'Earn 100 blessings',             goal:100,        key:'totalEarned'},
+  {id:'m2',  name:'Humble Beginnings',    desc:'Build 5 structures',             goal:5,          key:'totalBuilt'},
+  {id:'m3',  name:'Growing Faith',        desc:'Earn 10,000 blessings',          goal:10000,      key:'totalEarned'},
+  {id:'m4',  name:'The Faithful',         desc:'Reach 1 blessing/sec',           goal:1,          key:'bps'},
+  {id:'m5',  name:'Kingdom Rising',       desc:'Build 20 structures',            goal:20,         key:'totalBuilt'},
+  {id:'m6',  name:'Joyful Noise',         desc:'Earn 1 million blessings',       goal:1000000,    key:'totalEarned'},
+  {id:'m7',  name:'City on a Hill',       desc:'Reach 1,000 blessings/sec',      goal:1000,       key:'bps'},
+  {id:'m8',  name:'Abundant Life',        desc:'Earn 1 billion blessings',       goal:1000000000, key:'totalEarned'},
+  {id:'m9',  name:'Army of the Lord',     desc:'Build 50 structures',            goal:50,         key:'totalBuilt'},
+  {id:'m10', name:'The Great Commission', desc:'Reach 100,000 blessings/sec',    goal:100000,     key:'bps'},
+  {id:'m11', name:'New Jerusalem',        desc:'Earn 1 trillion blessings',      goal:1000000000000,key:'totalEarned'},
+  {id:'m12', name:'First Ascension',      desc:'Prestige once',                  goal:1,          key:'prestigeCount'},
+];
+
+let state={
+  blessings:0, totalEarned:0, totalBuilt:0,
+  buildings:{}, boughtUpgrades:[],
+  hasPremium:false, rewardActive:false, rewardEnd:0,
+  lastSave:Date.now(), completedMilestones:[],
+  prestigeCount:0, prestigeMultiplier:1,
+  prestigeLog:[],
 };
 
 function loadState(){
-  try{
-    const s = localStorage.getItem('kingdom_come_v1');
-    if(s){ Object.assign(state, JSON.parse(s)); }
-  }catch(e){}
+  try{const s=localStorage.getItem('kc_v2');if(s)Object.assign(state,JSON.parse(s));}catch(e){}
 }
+function saveState(){state.lastSave=Date.now();localStorage.setItem('kc_v2',JSON.stringify(state));}
 
-function saveState(){
-  state.lastSave = Date.now();
-  localStorage.setItem('kingdom_come_v1', JSON.stringify(state));
+function getUpgradeMultiplier(buildingId){
+  let m=1;
+  UPGRADES.forEach(u=>{
+    if(!state.boughtUpgrades.includes(u.id))return;
+    if(u.building===buildingId||(u.building==='global'))m*=u.mult;
+  });
+  return m;
+}
+function getTapMult(){
+  let m=1;
+  UPGRADES.forEach(u=>{if(u.building==='tap'&&state.boughtUpgrades.includes(u.id))m*=u.mult;});
+  return m;
 }
 
 function getBPS(){
-  let total = 0;
+  let total=0;
   BUILDINGS.forEach(b=>{
-    const count = state.buildings[b.id]||0;
-    total += b.bps * count;
+    const count=state.buildings[b.id]||0;
+    if(count===0)return;
+    const mult=getUpgradeMultiplier(b.id);
+    total+=b.bps*count*mult;
   });
-  if(state.rewardActive && Date.now() < state.rewardEnd) total *= 2;
+  total*=state.prestigeMultiplier;
+  if(state.rewardActive&&Date.now()<state.rewardEnd)total*=2;
   return total;
 }
 
 function getBuildingCost(b){
-  const count = state.buildings[b.id]||0;
-  return Math.floor(b.baseCost * Math.pow(1.15, count));
+  const count=state.buildings[b.id]||0;
+  return Math.floor(b.baseCost*Math.pow(1.35,count));
 }
 
 function formatNum(n){
-  if(n>=1e9) return (n/1e9).toFixed(2)+'B';
-  if(n>=1e6) return (n/1e6).toFixed(2)+'M';
-  if(n>=1e3) return (n/1e3).toFixed(1)+'K';
-  return Math.floor(n).toLocaleString();
+  n=Math.floor(n);
+  if(n>=1e15)return(n/1e15).toFixed(2)+'Qa';
+  if(n>=1e12)return(n/1e12).toFixed(2)+'T';
+  if(n>=1e9)return(n/1e9).toFixed(2)+'B';
+  if(n>=1e6)return(n/1e6).toFixed(2)+'M';
+  if(n>=1e3)return(n/1e3).toFixed(1)+'K';
+  return n.toLocaleString();
 }
 
 function handleTap(e){
-  const add = 1 + Math.floor(getBPS()*0.01);
-  state.blessings += add;
-  state.totalEarned += add;
-  const el = document.createElement('div');
-  el.className = 'float-text';
-  el.textContent = '+'+add;
-  el.style.left = (e.clientX - 15)+'px';
-  el.style.top = (e.clientY - 20)+'px';
-  document.body.appendChild(el);
-  setTimeout(()=>el.remove(), 950);
+  const base=1+Math.floor(getBPS()*0.005);
+  const add=Math.max(1,Math.floor(base*getTapMult()*state.prestigeMultiplier));
+  state.blessings+=add;state.totalEarned+=add;
+  const el=document.createElement('div');
+  el.className='float-text';el.textContent='+'+formatNum(add);
+  el.style.left=(e.clientX-15)+'px';el.style.top=(e.clientY-20)+'px';
+  document.body.appendChild(el);setTimeout(()=>el.remove(),950);
 }
 
 function buyBuilding(id){
-  const b = BUILDINGS.find(x=>x.id===id);
-  if(!b) return;
-  if(b.premium && !state.hasPremium){
-    document.getElementById('premiumModalTitle').textContent = b.name+' — Premium';
-    openModal('premiumModal');
-    return;
+  const b=BUILDINGS.find(x=>x.id===id);if(!b)return;
+  if(b.premium&&!state.hasPremium){
+    document.getElementById('premiumModalTitle').textContent=b.name+' — Premium';
+    openModal('premiumModal');return;
   }
-  const cost = getBuildingCost(b);
-  if(state.blessings < cost) return;
-  state.blessings -= cost;
-  state.buildings[b.id] = (state.buildings[b.id]||0)+1;
+  const cost=getBuildingCost(b);
+  if(state.blessings<cost)return;
+  state.blessings-=cost;
+  state.buildings[b.id]=(state.buildings[b.id]||0)+1;
   state.totalBuilt++;
-  renderBuildings();
-  checkMilestones();
+  renderBuildings();checkMilestones();
+}
+
+function buyUpgrade(id){
+  const u=UPGRADES.find(x=>x.id===id);if(!u)return;
+  if(state.boughtUpgrades.includes(u.id))return;
+  if(state.blessings<u.cost)return;
+  state.blessings-=u.cost;
+  state.boughtUpgrades.push(u.id);
+  showToast('✦ '+u.name+' unlocked!');
+  renderUpgrades();renderBuildings();
 }
 
 function watchRewardAd(){
-  if(state.rewardActive && Date.now() < state.rewardEnd) return;
-  // In production: show Google rewarded ad here
-  // For now: simulate ad watched
-  state.rewardActive = true;
-  state.rewardEnd = Date.now() + 30*60*1000;
-  showToast('✦ 2x Blessings active for 30 minutes!');
+  if(state.rewardActive&&Date.now()<state.rewardEnd)return;
+  state.rewardActive=true;state.rewardEnd=Date.now()+30*60*1000;
+  showToast('✦ 2× Blessings active for 30 minutes!');
   renderRewardBtn();
 }
 
 function renderRewardBtn(){
-  const btn = document.getElementById('rewardBtn');
-  const timer = document.getElementById('rewardTimer');
-  if(state.rewardActive && Date.now() < state.rewardEnd){
-    const remaining = Math.ceil((state.rewardEnd - Date.now())/1000);
-    const m = Math.floor(remaining/60), s = remaining%60;
-    btn.disabled = true;
-    timer.textContent = '2x active — '+m+'m '+String(s).padStart(2,'0')+'s remaining';
-  } else {
-    state.rewardActive = false;
-    btn.disabled = false;
-    timer.textContent = '';
-  }
+  const btn=document.getElementById('rewardBtn');
+  const timer=document.getElementById('rewardTimer');
+  if(state.rewardActive&&Date.now()<state.rewardEnd){
+    const r=Math.ceil((state.rewardEnd-Date.now())/1000);
+    const m=Math.floor(r/60),s=r%60;
+    btn.disabled=true;
+    timer.textContent='2× active — '+m+'m '+String(s).padStart(2,'0')+'s remaining';
+  }else{state.rewardActive=false;btn.disabled=false;timer.textContent='';}
 }
 
 function renderBuildings(){
-  const el = document.getElementById('buildingsList');
-  el.innerHTML = '';
+  const el=document.getElementById('buildingsList');el.innerHTML='';
   BUILDINGS.forEach(b=>{
-    const count = state.buildings[b.id]||0;
-    const cost = getBuildingCost(b);
-    const canAfford = state.blessings >= cost && (!b.premium || state.hasPremium);
-    const isLocked = b.premium && !state.hasPremium;
-    const div = document.createElement('div');
-    div.className = 'building-card'+(isLocked?' premium-locked':canAfford?' can-afford':'');
-    div.innerHTML = `
+    const count=state.buildings[b.id]||0;
+    const cost=getBuildingCost(b);
+    const isLocked=b.premium&&!state.hasPremium;
+    const canAfford=!isLocked&&state.blessings>=cost;
+    const mult=count>0?getUpgradeMultiplier(b.id)*state.prestigeMultiplier:1;
+    const actualBps=b.bps*mult;
+    const div=document.createElement('div');
+    div.className='building-card'+(isLocked?' premium-locked':canAfford?' can-afford':'');
+    div.innerHTML=`
       <div class="building-icon">${b.icon}</div>
       <div class="building-info">
-        <div class="building-name">${b.name} ${isLocked?'<span class="premium-badge">PASS</span>':''}</div>
-        <div class="building-desc">${b.desc}</div>
-        <div class="building-desc" style="color:var(--gold-dim);margin-top:2px">${b.bps} blessings/sec each</div>
+        <div class="building-name">${b.name}${isLocked?' <span class="premium-badge">PASS</span>':''}</div>
+        <div class="building-stat">${b.desc}</div>
+        <div class="building-stat" style="color:var(--gold-dim)">${formatNum(actualBps)} blessings/sec each</div>
       </div>
-      <div style="text-align:right;flex-shrink:0">
+      <div class="building-right">
         <div class="building-cost">${formatNum(cost)}</div>
         <div class="building-count">${count>0?count:''}</div>
-      </div>
-    `;
-    div.onclick = ()=>buyBuilding(b.id);
+      </div>`;
+    div.onclick=()=>buyBuilding(b.id);
     el.appendChild(div);
   });
+}
+
+function renderUpgrades(){
+  const el=document.getElementById('upgradesList');el.innerHTML='';
+  let anyVisible=false;
+  UPGRADES.forEach(u=>{
+    const bought=state.boughtUpgrades.includes(u.id);
+    // Only show if relevant building has at least 1 (or global/tap always show)
+    const relevantBuilding=BUILDINGS.find(b=>b.id===u.building);
+    if(relevantBuilding&&(state.buildings[u.building]||0)===0&&!bought)return;
+    anyVisible=true;
+    const canAfford=!bought&&state.blessings>=u.cost;
+    const div=document.createElement('div');
+    div.className='upgrade-card'+(bought?' bought':canAfford?' can-afford-up':'');
+    div.innerHTML=`
+      <div class="upgrade-icon">${bought?'✦':'◈'}</div>
+      <div class="upgrade-info">
+        <div class="upgrade-name">${u.name}</div>
+        <div class="upgrade-desc">${u.desc}</div>
+      </div>
+      ${bought?'<div class="upgrade-done">✓</div>':`<div class="upgrade-cost">${formatNum(u.cost)}</div>`}`;
+    if(!bought)div.onclick=()=>buyUpgrade(u.id);
+    el.appendChild(div);
+  });
+  if(!anyVisible){
+    el.innerHTML='<div style="padding:20px;text-align:center;color:var(--mist);font-family:\'IM Fell English\',serif;font-style:italic;font-size:14px">Build structures to unlock upgrades for them.</div>';
+  }
 }
 
 function renderMilestones(){
-  const el = document.getElementById('milestonesList');
-  el.innerHTML = '';
+  const el=document.getElementById('milestonesList');el.innerHTML='';
   MILESTONES.forEach(m=>{
-    const done = state.completedMilestones.includes(m.id);
-    const current = state[m.key]||0;
-    const pct = Math.min(100, (current/m.goal)*100);
-    const div = document.createElement('div');
-    div.className = 'milestone-item';
-    div.innerHTML = `
-      <div class="milestone-icon">${done?'✦':'○'}</div>
-      <div class="milestone-info">
-        <div class="milestone-name" style="${done?'color:var(--gold-dim)':''}">${m.name}</div>
-        <div class="milestone-desc">${m.desc}</div>
-        ${!done?`<div class="milestone-progress"><div class="milestone-fill" style="width:${pct}%"></div></div>`:''}
+    const done=state.completedMilestones.includes(m.id);
+    let current=0;
+    if(m.key==='bps')current=getBPS();
+    else current=state[m.key]||0;
+    const pct=Math.min(100,(current/m.goal)*100);
+    const div=document.createElement('div');
+    div.style.cssText='display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid rgba(201,168,76,0.05)';
+    div.innerHTML=`
+      <div style="font-size:16px;width:26px;text-align:center;flex-shrink:0">${done?'✦':'○'}</div>
+      <div style="flex:1">
+        <div style="font-family:'Cinzel',serif;font-size:12px;color:${done?'var(--gold-dim)':'var(--parchment)'}">${m.name}</div>
+        <div style="font-size:11px;color:var(--mist)">${m.desc}</div>
+        ${!done?`<div style="width:100%;height:3px;background:rgba(201,168,76,0.1);border-radius:2px;margin-top:5px;overflow:hidden"><div style="height:100%;width:${pct}%;background:var(--gold-dim);border-radius:2px;transition:width 0.5s"></div></div>`:''}
       </div>
-      ${done?'<div class="milestone-done">✓</div>':''}
-    `;
+      ${done?'<div style="font-size:12px;color:var(--grace);font-family:Cinzel,serif">✓</div>':''}`;
     el.appendChild(div);
   });
 }
 
+function renderPrestige(){
+  const hasCity=(state.buildings['cityoflight']||0)>=1;
+  const btn=document.getElementById('prestigeBtn');
+  const nextMult=(1+state.prestigeCount*0.5);
+  document.getElementById('nextPrestigeBonus').textContent='Next bonus: ×'+nextMult.toFixed(1)+' production multiplier';
+  document.getElementById('prestigeReq').textContent='Requires: City of Light (build 1 to unlock)';
+  btn.disabled=!hasCity;
+
+  const hist=document.getElementById('prestigeHistory');
+  if(state.prestigeLog.length>0){
+    hist.innerHTML='<div style="font-family:Cinzel,serif;font-size:10px;letter-spacing:0.15em;color:var(--gold-dim);text-transform:uppercase;margin-bottom:8px">Ascension log</div>';
+    state.prestigeLog.forEach((log,i)=>{
+      const div=document.createElement('div');
+      div.className='prestige-run';
+      div.innerHTML=`<span>Ascension ${i+1}</span><span>${log.date}</span><span style="color:var(--gold)">×${log.mult} production</span>`;
+      hist.appendChild(div);
+    });
+  }
+
+  const bar=document.getElementById('prestigeBar');
+  if(state.prestigeCount>0){
+    bar.style.display='flex';
+    document.getElementById('prestigeCount').textContent='#'+state.prestigeCount;
+    document.getElementById('prestigeBonus').textContent='× '+state.prestigeMultiplier.toFixed(1)+' production';
+  }
+}
+
+function doPrestige(){
+  const hasCity=(state.buildings['cityoflight']||0)>=1;
+  if(!hasCity)return;
+  const nextMult=(1+state.prestigeCount*0.5);
+  document.getElementById('prestigeConfirmBonus').textContent='You will gain ×'+nextMult.toFixed(1)+' permanent production';
+  openModal('prestigeModal');
+}
+
+function confirmPrestige(){
+  closeModal('prestigeModal');
+  const nextMult=1+state.prestigeCount*0.5;
+  state.prestigeCount++;
+  state.prestigeMultiplier*=nextMult;
+  state.prestigeLog.push({date:new Date().toLocaleDateString(),mult:nextMult.toFixed(1)});
+  state.blessings=0;
+  state.buildings={};
+  state.boughtUpgrades=[];
+  state.totalBuilt=0;
+  state.rewardActive=false;
+  showToast('✦ Ascension '+state.prestigeCount+' complete! ×'+nextMult.toFixed(1)+' bonus active.');
+  renderAll();
+}
+
 function checkMilestones(){
+  let anyNew=false;
   MILESTONES.forEach(m=>{
-    if(state.completedMilestones.includes(m.id)) return;
-    const current = state[m.key]||0;
-    if(current >= m.goal){
+    if(state.completedMilestones.includes(m.id))return;
+    let current=0;
+    if(m.key==='bps')current=getBPS();
+    else current=state[m.key]||0;
+    if(current>=m.goal){
       state.completedMilestones.push(m.id);
       showToast('✦ Milestone: '+m.name+'!');
-      state.nextMilestoneAd++;
-      // Every 5th milestone: show interstitial ad
-      if(state.nextMilestoneAd % 5 === 0 && !state.hasPremium){
-        setTimeout(()=>{ /* placeholder for interstitial */ }, 1200);
-      }
-      renderMilestones();
+      anyNew=true;
     }
   });
+  if(anyNew)renderMilestones();
+}
+
+function switchTab(name){
+  document.querySelectorAll('.tab-btn').forEach((b,i)=>{
+    const names=['buildings','upgrades','milestones','prestige','store'];
+    b.classList.toggle('active',names[i]===name);
+  });
+  document.querySelectorAll('.tab-panel').forEach(p=>{
+    p.classList.toggle('active',p.id==='tab-'+name);
+  });
+  if(name==='upgrades')renderUpgrades();
+  if(name==='milestones')renderMilestones();
+  if(name==='prestige')renderPrestige();
 }
 
 function showToast(msg){
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'), 3200);
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),3000);
 }
-
-function openModal(id){ document.getElementById(id).classList.add('open'); }
-function closeModal(id){ document.getElementById(id).classList.remove('open'); }
-function openPassModal(){ openModal('passModal'); }
+function openModal(id){document.getElementById(id).classList.add('open');}
+function closeModal(id){document.getElementById(id).classList.remove('open');}
+function openPassModal(){openModal('passModal');}
 
 function purchasePass(type){
-  const links = {
-    lifetime: 'https://buy.stripe.com/aFa8wPfSW14ZcNmakVefC02',
-    monthly:  'https://buy.stripe.com/cNi00jbCG4hb14E78JefC01',
+  const links={
+    lifetime:'https://buy.stripe.com/aFa8wPfSW14ZcNmakVefC02',
+    monthly:'https://buy.stripe.com/cNi00jbCG4hb14E78JefC01',
   };
-  window.open(links[type], '_blank');
+  window.open(links[type],'_blank');
 }
 
-let offlineAmount = 0;
+let offlineAmount=0;
 function checkOffline(){
-  const elapsed = (Date.now() - state.lastSave) / 1000;
-  if(elapsed > 30){
-    const bps = getBPS();
-    offlineAmount = Math.floor(bps * Math.min(elapsed, 8*3600));
-    if(offlineAmount > 0){
-      document.getElementById('offlineAmount').textContent = '+'+formatNum(offlineAmount)+' Blessings';
+  const elapsed=(Date.now()-state.lastSave)/1000;
+  if(elapsed>30){
+    const bps=getBPS();
+    offlineAmount=Math.floor(bps*Math.min(elapsed,8*3600));
+    if(offlineAmount>0){
+      document.getElementById('offlineAmount').textContent='+'+formatNum(offlineAmount)+' Blessings';
       openModal('offlineModal');
     }
   }
 }
-
 function claimOffline(doubled){
-  const earn = doubled ? offlineAmount*2 : offlineAmount;
-  state.blessings += earn;
-  state.totalEarned += earn;
+  const earn=doubled?offlineAmount*2:offlineAmount;
+  state.blessings+=earn;state.totalEarned+=earn;
   closeModal('offlineModal');
-  if(doubled) showToast('Ad watched — offline earnings doubled!');
+  if(doubled)showToast('Ad watched — offline earnings doubled!');
   checkMilestones();
 }
 
 function setVerse(){
-  const day = new Date().getDay();
-  document.getElementById('verseText').textContent = VERSES[day % VERSES.length];
+  const day=new Date().getDay();
+  document.getElementById('verseText').textContent=VERSES[day%VERSES.length];
 }
 
-// MAIN TICK
-function tick(){
-  const bps = getBPS();
-  state.blessings += bps / 20;
-  state.totalEarned += bps / 20;
+function renderAll(){
+  renderBuildings();
+  renderUpgrades();
+  renderMilestones();
+  renderPrestige();
+}
 
-  document.getElementById('blessingsDisplay').textContent = formatNum(state.blessings);
-  document.getElementById('bpsDisplay').textContent = '+'+formatNum(bps)+' per second'+(state.rewardActive&&Date.now()<state.rewardEnd?' (2x active)':'');
-
-  // Update building affordability highlights
+let saveTimer=0;
+function gameTick(){
+  const bps=getBPS();
+  state.blessings+=bps/20;
+  state.totalEarned+=bps/20;
+  document.getElementById('blessingsDisplay').textContent=formatNum(state.blessings);
+  document.getElementById('bpsDisplay').textContent='+'+formatNum(bps)+'/sec'+(state.rewardActive&&Date.now()<state.rewardEnd?' (2× active)':'');
+  document.getElementById('lifetimeDisplay').textContent='Total earned: '+formatNum(state.totalEarned);
   document.querySelectorAll('.building-card').forEach((card,i)=>{
-    const b = BUILDINGS[i];
-    if(!b) return;
-    const cost = getBuildingCost(b);
-    const isLocked = b.premium && !state.hasPremium;
-    if(!isLocked){
-      card.classList.toggle('can-afford', state.blessings >= cost);
-    }
+    const b=BUILDINGS[i];if(!b)return;
+    const isLocked=b.premium&&!state.hasPremium;
+    if(!isLocked)card.classList.toggle('can-afford',state.blessings>=getBuildingCost(b));
   });
-
+  document.querySelectorAll('.upgrade-card').forEach(card=>{
+    const costEl=card.querySelector('.upgrade-cost');
+    if(!costEl)return;
+    const cost=parseInt(costEl.textContent.replace(/[^0-9]/g,''));
+    card.classList.toggle('can-afford-up',!card.classList.contains('bought')&&state.blessings>=UPGRADES.find(u=>formatNum(u.cost)===costEl.textContent)?.cost);
+  });
   renderRewardBtn();
   checkMilestones();
-}
-
-let saveTimer = 0;
-function gameTick(){
-  tick();
   saveTimer++;
-  if(saveTimer >= 100){ saveState(); saveTimer=0; }
+  if(saveTimer>=100){saveState();saveTimer=0;}
 }
 
-// INIT
 loadState();
 setVerse();
-renderBuildings();
-renderMilestones();
+renderAll();
 checkOffline();
-
-if(state.hasPremium){
-  document.getElementById('adBanner').classList.add('hidden');
-}
-
-setInterval(gameTick, 50);
+if(state.hasPremium)document.getElementById('adBanner').classList.add('hidden');
+setInterval(gameTick,50);
 </script>
 </body>
 </html>
